@@ -11,9 +11,11 @@ function getMovies(url) {
     fetch(url).then(res => res.json()).then(({results}) => showMovies(results));
 }
 
+
 function showMovies(data) {
 
     main.innerHTML= '';
+
 
    data.forEach(movie => {
      const {title, poster_path, release_date, popularity} = movie;
@@ -25,15 +27,16 @@ function showMovies(data) {
     
 
           <div class="video__details">
-            <div class="author">
-              <img src="${API_IMG+poster_path}" alt="">
+            <img src="${API_IMG+poster_path}" alt="">
+            <div class="video__info">
               <h3>${title}</h3> 
+              <p>${title}</p>
+              <div class="video__stats">
+         
+              <span>${kFormatter(popularity)} Views</span> &middot;
+              <span>${formatTimeAgo(new Date(release_date))}</span>
+              </div>
             </div>
-          </div>
-
-          <div class="title">
-          <a href="">${title}</a>
-          <span>${popularity} Views ~ ${release_date}</span>
           </div>
         </div>
     `
